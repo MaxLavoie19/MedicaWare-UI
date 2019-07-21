@@ -2,6 +2,15 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
+  <form>
+    <div>
+      <mat-form-field>
+        <mat-label>Fetch a visit</mat-label>
+        <textarea matInput #visitNumber placeholder="Visit number"></textarea>
+      </mat-form-field>
+      <button mat-raised-button ng-click="fetchVisit">Visit number</button>
+    </div>
+  </form>
   <ul>
     <li *ngFor="let visit of loadingVisits">
       <observable-placeholder [name]="visit.name">
@@ -13,5 +22,3 @@
     </li>
   </ul>
 </div>
-
-<router-outlet></router-outlet>
