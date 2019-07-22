@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { ObservablePlaceholderModule } from './components/observable-placeholder/observable-placeholder.module';
 import { JsonContentModule } from './components/json-content/json-content.module';
 import { MatFormFieldModule, MatButtonModule, MatInputModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import { SocketService } from './services/socket/socket.service';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,9 @@ import { MatFormFieldModule, MatButtonModule, MatInputModule } from '@angular/ma
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [SocketService],
   bootstrap: [AppComponent]
 })
 
