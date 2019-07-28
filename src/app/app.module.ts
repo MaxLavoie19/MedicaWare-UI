@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ObservablePlaceholderModule } from './components/observable-placeholder/observable-placeholder.module';
-import { JsonContentModule } from './components/json-content/json-content.module';
 import { MatFormFieldModule, MatButtonModule, MatInputModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
-import { SocketService } from './services/socket/socket.service';
+
+import { JsonTreeModule } from 'src/app/components/json-tree/json-tree.module';
+import { VisitLoaderService } from 'src/app/services/visit-loader/visit-loader.service';
+import { SocketService } from 'src/app/services/socket/socket.service';
 
 @NgModule({
   declarations: [
@@ -18,14 +18,13 @@ import { SocketService } from './services/socket/socket.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ObservablePlaceholderModule,
-    JsonContentModule,
+    JsonTreeModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
     HttpClientModule,
   ],
-  providers: [SocketService],
+  providers: [SocketService, VisitLoaderService],
   bootstrap: [AppComponent]
 })
 

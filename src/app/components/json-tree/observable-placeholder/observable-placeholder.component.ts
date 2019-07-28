@@ -5,12 +5,8 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './observable-placeholder.component.html',
   styleUrls: ['./observable-placeholder.component.scss']
 })
-export class ObservablePlaceholderComponent implements OnInit {
+export class ObservablePlaceholderComponent {
   @Input() public name: string;
 
   constructor() { }
-
-  ngOnInit() {
-  }
-
 }

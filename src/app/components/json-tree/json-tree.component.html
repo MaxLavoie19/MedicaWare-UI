@@ -1,0 +1,10 @@
+<div>
+  <ul>
+    <li *ngFor="let key of (keys | async)">
+      <div [ngSwitch]="typeOf(getItem(key) | async)">
+        <observable-placeholder *ngSwitchCase="'Observable'" [name]="key"></observable-placeholder>
+        <json-content *ngSwitchDefault [name]="key" [value]="getItem(key) | async"></json-content>
+      </div>
+    </li>
+  </ul>
+</div>
