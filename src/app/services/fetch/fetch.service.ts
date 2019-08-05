@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpParams, HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject, AsyncSubject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import { SocketService } from 'src/app/services/socket/socket.service';
@@ -27,19 +27,22 @@ export class FetchService {
     responseType?: 'json';
     withCredentials?: boolean;
   }): Observable<unknown> {
-    return new Observable((observer) => {
-      this.http.get(url, options).subscribe((result: any) => {
-        const guid = result.guid;
-        this.getEventUpdate(guid).subscribe(observer.next.bind(observer));
+    const asyncSubject = new AsyncSubject<any>();
+    this.http.get(url, options).subscribe((result: any) => {
+      const guid = result.guid;
+      this.getEventUpdate(guid).subscribe((value: any) => {
+        asyncSubject.next(value);
+        asyncSubject.complete();
       });
     });
+    return asyncSubject.asObservable();
   }
 
   initIoConnection(): void {
     this.socketService.initSocket();
   }
 
-  private getEventUpdate(guid: string): Observable<unknown> {
+  private getEventUpdate(guid: string): Observable<any> {
     this.socketService.subscribe(guid);
     return this.updateObservable.pipe(
       filter(x => x.guid === guid),

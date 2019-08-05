@@ -1,10 +1,23 @@
-<div>
-  <ul>
-    <li *ngFor="let key of (keys | async)">
-      <div [ngSwitch]="typeOf(getItem(key) | async)">
-        <observable-placeholder *ngSwitchCase="'Observable'" [name]="key"></observable-placeholder>
-        <json-content *ngSwitchDefault [name]="key" [value]="getItem(key) | async"></json-content>
-      </div>
-    </li>
-  </ul>
-</div>
+<span [ngSwitch]="type" [attr.type]="type">
+  <span *ngSwitchCase="'null'"></span>
+  <span *ngSwitchCase="'undefined'"></span>
+  <span *ngSwitchDefault>
+    <mat-spinner *ngIf="isLoading" [diameter]="20"></mat-spinner>
+    <mat-icon *ngIf="!isLoading" class="green-icon">check</mat-icon>
+    <span [innerHTML]="name"></span>
+    <span> : </span>
+    <span [ngSwitch]="type" [attr.type]="type">
+      <ul *ngSwitchCase="'Array'">
+        <li *ngFor="let item of currentValue; let i = index">
+          <json-tree [name]="i" [value]="item"></json-tree>
+        </li>
+      </ul>
+      <ul *ngSwitchCase="'object'">
+        <li *ngFor="let key of getKeys(currentValue)">
+          <json-tree [name]="key" [value]="getItem(currentValue, key)"></json-tree>
+        </li>
+      </ul>
+      <span *ngSwitchDefault [innerHTML]="currentValue"></span>
+    </span>
+  </span>
+</span>

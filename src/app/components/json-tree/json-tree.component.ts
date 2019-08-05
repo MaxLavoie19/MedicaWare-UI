@@ -1,43 +1,48 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Component, Input } from '@angular/core';
 
 import { typeOf } from 'src/app/utils/typeGetter';
 
 @Component({
   selector: 'json-tree',
   templateUrl: './json-tree.component.html',
-  styleUrls: ['./json-tree.component.css']
+  styleUrls: ['./json-tree.component.scss'],
 })
-export class JsonTreeComponent implements OnInit {
-  private keysObservable = new BehaviorSubject([]);
-  @Input() public observable: Observable<any>;
+export class JsonTreeComponent {
+  public type: string;
+  public isLoading = false;
+
+  @Input()
+  set value(value: any) {
+    this.type = typeOf(value);
+    if (this.type === 'Observable') {
+      this.isLoading = true;
+      this.currentValue = 'Loading...';
+      value.subscribe({
+        next: (newValue) => {
+          this.currentValue = newValue;
+          this.type = typeOf(newValue);
+        },
+        complete: () => {
+          this.isLoading = false;
+        },
+      });
+    } else {
+      this.currentValue = value;
+    }
+  }
+
+  @Input() public name: string;
+  public currentValue: any;
 
   constructor() { }
 
-  ngOnInit() {
-    this.observable.subscribe((value) => {
-      if (value) {
-        if (value instanceof Observable) {
-          this.keysObservable.next([]);
-        } else {
-          this.keysObservable.next(Object.keys(value));
-        }
-      } else {
-        this.keysObservable.next([]);
-      }
-    });
+  getItem(item, key): any {
+    const member = item[key];
+    return member;
   }
 
-  public get keys() {
-    return this.keysObservable.asObservable();
-  }
-
-  getItem(key: string) {
-    return this.observable.pipe(map(value => value[key]));
-  }
-
-  typeOf(item: any) {
-    return typeOf(item);
+  getKeys(item): string[] {
+    const keys = Object.keys(item);
+    return keys;
   }
 }

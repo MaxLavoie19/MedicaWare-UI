@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { VisitLoaderService } from 'src/app/services/visit-loader/visit-loader.service';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { VisitToJsonService } from 'src/app/services/visit-to-json/visit-to-json.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'MedicaWare-UI';
-  visitObservable: Observable<any>;
-
-  constructor(private visitLoader: VisitLoaderService) { }
-
-  ngOnInit() {
-    this.visitObservable = this.visitLoader.visitObservable;
-  }
+  public visit: any;
+  constructor(private visitLoader: VisitLoaderService, private visitSaver: VisitToJsonService) { }
 
   fetchVisit(visitId: string) {
-    this.visitLoader.updateVisit(visitId);
+    this.visit = this.visitLoader.getVisit(visitId);
+    const jsonObservable = this.visitSaver.toJson(this.visit);
+    jsonObservable.subscribe((json) => {
+      console.log(json);
+    });
   }
 }
