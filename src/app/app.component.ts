@@ -17,7 +17,7 @@ export class AppComponent {
     this.visit = this.visitLoader.getVisit(visitId);
     const jsonObservable = this.visitSaver.toJson(this.visit);
     jsonObservable.subscribe((json) => {
-      console.log(json);
+      console.log(JSON.stringify(json));
     });
   }
 }

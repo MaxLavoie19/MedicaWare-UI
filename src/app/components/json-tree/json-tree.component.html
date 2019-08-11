@@ -17,6 +17,7 @@
           <json-tree [name]="key" [value]="getItem(currentValue, key)"></json-tree>
         </li>
       </ul>
+      <span *ngSwitchCase="'Date'" [innerHTML]="currentValue.toUTCString()"></span>
       <span *ngSwitchDefault [innerHTML]="currentValue"></span>
     </span>
   </span>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subscription, BehaviorSubject, Observable, Subject, forkJoin } from 'rxjs';
 import { FetchService } from 'src/app/services/fetch/fetch.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -35,35 +36,14 @@ export class VisitLoaderService {
       visit.diagnosisRelatedGroup = this.fetchDiagnosisRelatedGroup(admissionId);
       visit.mvInputEventGroups = this.fetchMvInputEventGroups(admissionId);
       visit.cvInputEventGroups = this.fetchCvInputEventGroups(admissionId);
-      visit.chartEventTypes = this.getChartEventTypes(admissionId);
+      visit.chartDiscreteEventTypes = this.fetchChartEvents(admissionId, 'discrete');
+      visit.chartLinearEventTypes = this.fetchChartEvents(admissionId, 'linear', true);
       visit.notes = this.fetchNotes(admissionId);
       visitBehaviorSubject.next(visit);
       this.setVisitCompleteCondition(visitBehaviorSubject);
     });
     this.subscriptions.push(subscription);
     return visitBehaviorSubject.asObservable();
-  }
-
-  getChartEventTypes(admissionId: string) {
-    const chartEventTypesSubject = new Subject();
-    const fetchObservable = this.fetchChartEventTypes(admissionId);
-    const chartSubscription = fetchObservable.subscribe((chartEventTypeList: []) => {
-      const chartEventTypes = {};
-      const chartEventTypeObservableList = [];
-      chartEventTypeList.forEach((chartEventType: any) => {
-        const chartEventTypeName = chartEventType.label;
-        const itemId = chartEventType.itemid;
-        const observable = this.fetchChartEventsByType(admissionId, itemId);
-        chartEventTypes[chartEventTypeName] = observable;
-        chartEventTypeObservableList.push(observable);
-      });
-      forkJoin(chartEventTypeObservableList).subscribe(() => {
-        chartEventTypesSubject.complete();
-      });
-      chartEventTypesSubject.next(chartEventTypes);
-    });
-    this.subscriptions.push(chartSubscription);
-    return chartEventTypesSubject.asObservable();
   }
 
   setVisitCompleteCondition(visitBehaviorSubject) {
@@ -156,16 +136,56 @@ export class VisitLoaderService {
     return this.fetchService.fetch(`http://localhost:4040/visit/${admissionId}/cv-input-event-groups`);
   }
 
-  fetchChartEvents(admissionId: string): Observable<unknown> {
-    return this.fetchService.fetch(`http://localhost:4040/visit/${admissionId}/chart-events`);
+  fetchChartEvents(admissionId: string, dataType?: string, isOnlyLimit?: boolean): Observable<unknown> {
+    let onlyLimit;
+    if (isOnlyLimit !== undefined) {
+      onlyLimit = isOnlyLimit.toString();
+    } else {
+      onlyLimit = '';
+    }
+    return this.fetchService.fetch(
+      `http://localhost:4040/visit/${admissionId}/chart-events`,
+      { params: { dataType, onlyLimit } }
+    ).pipe(map((chartEventList): any => {
+      const chartEventDict = {};
+      chartEventList.forEach((chartEvent: any) => {
+        const label = chartEvent.label;
+        if (dataType === 'linear') {
+          const oldEvent = chartEventDict[label];
+          chartEventDict[label] = this.mergeLinearChartEvent(oldEvent, chartEvent);
+        } else {
+          chartEventDict[label] = chartEvent;
+        }
+      });
+      return chartEventDict;
+    }));
   }
 
-  fetchChartEventTypes(admissionId: string): Observable<unknown> {
-    return this.fetchService.fetch(`http://localhost:4040/visit/${admissionId}/chart-event-types`);
-  }
-
-  fetchChartEventsByType(admissionId: string, itemId: string): Observable<unknown> {
-    return this.fetchService.fetch(`http://localhost:4040/visit/${admissionId}/chart-events/item-id/${itemId}`);
+  mergeLinearChartEvent(oldEvent, newChartEvent) {
+    newChartEvent.valuenum = Number(newChartEvent.valuenum);
+    newChartEvent.charttime = new Date(newChartEvent.charttime);
+    if (oldEvent) {
+      if (oldEvent.maxValuenum < newChartEvent.valuenum) {
+        oldEvent.maxValuenum = newChartEvent.valuenum;
+        oldEvent.maxValueuom = newChartEvent.valueuom;
+        oldEvent.maxCharttime = newChartEvent.charttime;
+      } else {
+        oldEvent.minValuenum = newChartEvent.valuenum;
+        oldEvent.minValueuom = newChartEvent.valueuom;
+        oldEvent.minCharttime = newChartEvent.charttime;
+      }
+      if (oldEvent.minValueuom === oldEvent.maxValueuom) {
+        oldEvent.deltaValuenum = oldEvent.maxValuenum - oldEvent.minValuenum;
+      }
+      oldEvent.deltaCharttime = oldEvent.maxCharttime - oldEvent.minCharttime;
+    } else {
+      oldEvent = {
+        minValuenum: newChartEvent.valuenum, maxValuenum: newChartEvent.valuenum,
+        minValueuom: newChartEvent.valueuom, maxValueuom: newChartEvent.valueuom,
+        minCharttime: newChartEvent.charttime, maxCharttime: newChartEvent.charttime,
+      };
+    }
+    return oldEvent;
   }
 
   fetchNotes(admissionId: string): Observable<unknown> {

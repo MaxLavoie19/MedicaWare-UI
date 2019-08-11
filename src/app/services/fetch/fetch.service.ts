@@ -15,7 +15,7 @@ export class FetchService {
     this.updateObservable = this.socketService.onUpdate();
   }
 
-  fetch(url: string, options?: {
+  fetch<T = any>(url: string, options?: {
     headers?: HttpHeaders | {
       [header: string]: string | string[];
     };
@@ -26,7 +26,7 @@ export class FetchService {
     reportProgress?: boolean;
     responseType?: 'json';
     withCredentials?: boolean;
-  }): Observable<unknown> {
+  }): Observable<T> {
     const asyncSubject = new AsyncSubject<any>();
     this.http.get(url, options).subscribe((result: any) => {
       const guid = result.guid;

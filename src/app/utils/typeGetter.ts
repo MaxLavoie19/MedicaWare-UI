@@ -13,6 +13,8 @@ export function typeOf(item: any): string {
         type = 'Observable';
       } else if (item instanceof Array) {
         type = 'Array';
+      } else if (item instanceof Date) {
+        type = 'Date';
       }
     }
   }

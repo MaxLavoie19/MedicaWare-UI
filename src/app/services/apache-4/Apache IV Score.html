@@ -1,0 +1,539 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Apache IV Score</title>
+  <style type="text/css">
+    <!--
+    #formul {
+      position: absolute;
+      width: auto;
+      height: auto;
+      z-index: 1;
+      visibility: visible;
+    }
+
+    #droit {
+      position: absolute;
+      width: 380px;
+      height: auto;
+      z-index: 1;
+      margin-left: 430px;
+      top: 0px;
+      left: 0px;
+      visibility: visible;
+    }
+
+    #gauch {
+      position: absolute;
+      width: 380px;
+      height: auto;
+      z-index: 2;
+      padding-right: 25px;
+      border-top-width: 1px;
+      border-right-width: 1px;
+      border-bottom-width: 1px;
+      border-left-width: 1px;
+      border-right-style: solid;
+      border-top-color: #999999;
+      border-right-color: #999999;
+      border-bottom-color: #999999;
+      border-left-color: #999999;
+      left: 0px;
+      top: 0px;
+      visibility: visible;
+    }
+
+    #grad {
+      display: none;
+      left: 0px;
+      bottom: 0px;
+      position: absolute;
+      margin: 20px;
+      border: 1px solid #999999;
+      background-color: #669999;
+    }
+    -->
+  </style>
+  <script type="text/javascript" src="./APache IV Score.js"></script>
+  <link href="Apache IV.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload="MM_preloadImages('../Img/fin2.jpg','../Img/help2.jpg','../Img/ferm2.jpg')">
+  <div id="banner2">APACHE IV Score</div>
+  <div id="banner1">ICU Calculators-RNSH</div>
+  <div id="close">
+    <div align="right">
+      <table width="50%">
+        <tr>
+          <td width="31%">
+            <div align="center"><a href="javascript:helpapp()" onmouseout="MM_swapImgRestore()"
+                onmouseover="MM_swapImage('help','','../Img/help2.jpg',1)"><img src="../Img/help.jpg" alt="help"
+                  name="help" width="33" height="33" border="0" id="help" /></a></div>
+          </td>
+          <td width="31%">
+            <div align="center"><a href="Javascript:window.close()" onmouseout="MM_swapImgRestore()"
+                onmouseover="MM_swapImage('closbutt','','../Img/fin2.jpg',1)"><img src="../Img/fin.jpg" alt="close"
+                  name="closbutt" width="32" height="32" border="0" id="closbutt" /></a></a></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div align="center" class="helpstyle">Info</div>
+          </td>
+          <td>
+            <div align="center" class="closestyle">Close</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div id="tl">
+    <div id="bl">
+      <div id="br">
+        <table>
+          <tr>
+            <td><span class="aide"><strong>Info </strong>|</span></td>
+            <td>&nbsp;</td>
+            <td><a href="javascript:helpapp()" onmouseout="MM_swapImgRestore()"
+                onmouseover="MM_swapImage('fermhelp','','../Img/ferm2.jpg',1)"><img src="../Img/ferm.jpg"
+                  name="fermhelp" width="14" height="14" border="0" id="fermhelp" /></a></td>
+          </tr>
+        </table>
+        <p> APACHE means Acute Physiology And Chronic Health Evaluation. The APACHE II score was published in 1985 ;
+          APACHE IV is the latest version, published in 2006. Built on the study of a more recent patient population and
+          standard of care, it has now become the recommended score to be used instead of APACHE II and III.</p>
+        <p> APACHE scores are probably the most widely used in <strong>Intensive care</strong>, to quantify the
+          <strong>severity of the illness</strong> of the patients. They represent a usefull tool to compare populations
+          of patients, in clinical studies, or in quality audit.</p>
+        <p>Like APACHE II, APACHE IV provides the basis for the calculation of an estimated <strong>risk of
+            death</strong>. Also provides an estimation of the <strong>length of stay</strong>.</p>
+        <p>From APACHE II to APACHE IV, the scoring system has been complexified, taking into account a greater number
+          of variable (and extracting scores from several variable in a slightly different way), and making reference to
+          a large database of coefficient individualized for an increased number of disease, for the calculation of the
+          risk of death and length of stay.<br />
+          APACHE III and IV are very similar, using the same variables. Only the disease-specific coefficients have been
+          updated.</p>
+        <p>The APS score in the Acute Physiology Score, which is the part of the score calculated without taking into
+          account patient's age and Chronic Health Condition details.</p>
+        <p> - <u>Step 1</u> : fill out the form in column 1, by entering patient's values. The worst value obtained
+          during the first 24h must be used.<br />
+          If the patient has been intubated / ventilated at any time during the first 24h, &quot;Yes&quot; facing
+          &quot;Mecanical ventilation&quot; should be ticked. <br />
+          The appropriate situation must then be selected in the drop-down menus : FiO2 &gt; 50%, or FiO2 &lt; 50%. The
+          software will calculate the Alveolo-arterial gradient, using 0.8 as a Respiratory Quotient, and 760 mmHg for
+          the Atmopheric pressure. Those default values can be changed by clicking on &quot;Change the value for
+          AaDO2&quot; at the bottom of the page.<br />
+          The GCS score must be completed if possible : if it can not be properly assessed (patient paralysed or on
+          sedation), then the &quot;Not available&quot; box shoul be ticked. This box should not be used in case of
+          intubation alone ; an estimation of the Verbal response should be hypotethized instead.</p>
+        <p>- <u>Step 2</u> : Details of the Chronic Health Condition must be provided in the right column, by ticking
+          the appropriate boxes.</p>
+        <p>- <u>Step 3</u> : Details on the Admission conditions must then be filled out, by entering the length of stay
+          prior to ICU admission, the origin of the patient (selection inside the drop-down menu), and wether it's the
+          patient's first admission (readmission or not), and if the admission is requested after an emergency surgical
+          procedure.</p>
+        <p>- <u>Step 4</u> : The admission diagnosis (the current diagnosis, for which the patient required intensive
+          care) must then be completed : first select the correct situation, postoperative or medical situation. Then
+          select in the first drop-down menu the system affected (by the primary diagnosis), and select in the second
+          drop-down menu the most appropriate admission diagnosis.<br />
+          In case of acute myocardial infarction, choice is given to tick wether the patient was thrombolysed or not.
+        </p>
+        <p>- <u>Step 5</u> : click &quot;Calculate&quot; button to obtain APACHE and APS score, and corresponding
+          estimated mortality rate.<br />
+        </p>
+      </div>
+    </div>
+  </div>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <form id="apa" name="apa">
+    <div id="formul">
+      <div id="droit">
+        <table width="100%">
+          <tr>
+            <td colspan="2" bgcolor="#CCCCCC"> Chronic Health Condition :</td>
+          </tr>
+          <tr>
+            <td><label>
+                <input type="checkbox" name="crf" id="crf" />
+              </label>
+              CRF / HD</td>
+            <td><label>
+                <input type="checkbox" name="lym" id="lym" />
+              </label>
+              Lymphoma</td>
+          </tr>
+          <tr>
+            <td><label>
+                <input type="checkbox" name="cir" id="cir" />
+                Cirrhosis </label></td>
+            <td><label>
+                <input type="checkbox" name="leu" id="leu" />
+              </label>
+              Leukemia / Myeloma</td>
+          </tr>
+          <tr>
+            <td><label>
+                <input type="checkbox" name="hep" id="hep" />
+              </label>
+              Hepatic Failure</td>
+            <td><label>
+                <input type="checkbox" name="imm" id="imm" />
+              </label>
+              Immunosuppression</td>
+          </tr>
+          <tr>
+            <td><label>
+                <input type="checkbox" name="met" id="met" />
+              </label>
+              Metastatic Carcinoma</td>
+            <td><label>
+                <input type="checkbox" name="aid" id="aid" />
+              </label>
+              AIDS</td>
+          </tr>
+        </table>
+        <br />
+        <table width="100%" border="0">
+          <tr>
+            <td colspan="2" bgcolor="#CCCCCC">Admission Information :</td>
+          </tr>
+          <tr>
+            <td><label></label>
+              Pre-ICU LOS (days)<br />
+              <label></label> </td>
+            <td><label>
+                <input name="los" type="text" id="los" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td id="tab1"><label></label>
+              <label></label>
+              Origin<br /></td>
+            <td id="tab1"><label>
+                <select name="ori" id="ori">
+                  <option value="0" selected="selected">Other</option>
+                  <option value="1">Floor</option>
+                  <option value="2">OT / Recovery</option>
+                  <option value="3">Other Hospital</option>
+                </select>
+              </label></td>
+          </tr>
+          <tr>
+            <td>Readmission</td>
+            <td><label>
+                <input name="rea" type="radio" id="read" value=0 checked="checked" />
+              </label>
+              No
+              <label>
+                <input type="radio" name="rea" id="read" value=1 />
+              </label>
+              Yes</td>
+          </tr>
+          <tr>
+            <td><label></label>
+              Emergency Surgery<br />
+              <label></label>
+              <label></label></td>
+            <td><label>
+                <input name="eme" type="radio" id="surg" value=0 checked="checked" />
+                No
+                <input type="radio" name="eme" id="surg" value=1 />
+                Yes
+              </label></td>
+          </tr>
+        </table>
+        <br />
+        <table width="100%">
+          <tr>
+            <td colspan="2" bgcolor="#CCCCCC">Admission Diagnosis :</td>
+          </tr>
+          <tr>
+            <td colspan="2"><label>
+                <input type="radio" name="typ" id="typ" value="1" onclick="defsys()" />
+              </label>
+              Non operative
+              <label>
+                <input type="radio" name="typ" id="typ" value="2" onclick="defsys()" />
+              </label>
+              Postoperative</td>
+          </tr>
+          <tr>
+            <td colspan="2"><label>
+                <select name="sys" id="sys" onchange="defdiag()">
+                  <option>System</option>
+                </select>
+              </label></td>
+          </tr>
+          <tr>
+            <td colspan="2"><label>
+                <select name="gno" id="gno" onchange="defthro()">
+                  <option>Diagnosis</option>
+                </select>
+              </label></td>
+          </tr>
+          <tr>
+            <td id="tabthr">Thrombolysis : </td>
+            <td id="tabthr2"><label>
+                <input name="thr" type="radio" id="thr" value="0" checked="checked" />
+              </label>
+              No
+              <label>
+                <input type="radio" name="thr" id="thr" value="1" />
+              </label>
+              Yes</td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <p>
+          <input type="button" name="button" id="button" value="Calculate" onclick="apachcalc()" />
+        </p>
+        <table width="100%" border="0">
+          <tr>
+            <td bgcolor="#990000"><span class="whitestyle">APACHE IV Score</span></td>
+            <td bgcolor="#990000" class="whitestyle"><label>
+                <input name="sco" type="text" id="sco" size="5" />
+                /286</label></td>
+          </tr>
+          <tr>
+            <td bgcolor="#990000" class="whitestyle">APS Score</td>
+            <td bgcolor="#990000" class="whitestyle"><label>
+                <input name="aps" type="text" id="aps" size="5" />
+                /239</label></td>
+          </tr>
+          <tr>
+            <td bgcolor="#660000"><span class="whitestyle">Estimated Mortality Rate</span></td>
+            <td bgcolor="#660000"><input name="mor" type="text" id="mor" size="5" />
+              <span class="whitestyle">%</span></td>
+          </tr>
+          <tr>
+            <td bgcolor="#660000" class="whitestyle">Estimated Length of Stay</td>
+            <td bgcolor="#660000" class="whitestyle"><label>
+                <input name="sej" type="text" id="sej" size="5" />
+                days</label></td>
+          </tr>
+        </table>
+      </div>
+      <div id="gauch">
+        <div class="notestyle" id="grad">
+          <table width="75%">
+            <tr>
+              <td class="notestyle whitestyle"><u>Values used for AaDO2 calculation</u> :</td>
+              <td class="notestyle whitestyle">&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="notestyle whitestyle">Respiratory Quotient</td>
+              <td class="notestyle"><input name="quo" type="text" id="quo" value="0.8" size="2" /> </td>
+            </tr>
+            <tr>
+              <td class="notestyle whitestyle">Atmospheric Pressure (mmHg)</td>
+              <td class="notestyle"><input name="patm" type="text" id="patm" value="760" size="2" /> </td>
+            </tr>
+            <tr>
+              <td class="notestyle whitestyle">&nbsp;</td>
+              <td class="notestyle"><a href="Javascript: gradapp()" class="whitestyle">Done</a></td>
+            </tr>
+          </table>
+        </div>
+        <table width="100%" border="0">
+          <tr>
+            <td width="64%" valign="top">Age (ans)</td>
+            <td width="36%" valign="top"><label>
+                <input name="age" type="text" id="age" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">Temperature (°C)</td>
+            <td valign="top"><label>
+                <input name="tem" type="text" id="tem" value="37" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">MAP (mmHg)</td>
+            <td valign="top"><label>
+                <input name="map" type="text" id="map" value="70" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">HR (/min)</td>
+            <td valign="top"><label>
+                <input name="hr" type="text" id="hr" value="80" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">RR (/min)</td>
+            <td valign="top"><label>
+                <input name="rr" type="text" id="rr" value="15" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td id="tab3"><label></label>
+              <label>Mecanical Ventilation</label></td>
+            <td id="tab3"><label>
+                <input name="ven" type="radio" id="ven" value="a" />
+              </label>
+              No
+              <label>
+                <input type="radio" name="ven" id="ven" value="b" />
+              </label>
+              Yes</td>
+          </tr>
+          <tr>
+            <td valign="top">FiO2 (%)</td>
+            <td valign="top"><label>
+                <input name="fio" type="text" id="fio" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">pO2 (mmHg)</td>
+            <td valign="top"><label>
+                <input name="oxy" type="text" id="oxy" value="90" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">pCO2 (mmHg)</td>
+            <td valign="top"><label>
+                <input name="pco" type="text" id="pco" value="40" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top"><label>Arterial pH</label></td>
+            <td valign="top"><label>
+                <input name="pha" type="text" id="pha" value="7.4" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">Na+ (mEq/L)</td>
+            <td valign="top"><label>
+                <input name="nas" type="text" id="nas" value="140" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">Urine Output (mL/24h)</td>
+            <td valign="top"><label>
+                <input name="uri" type="text" id="uri" size="5" />
+              </label>
+              <label></label></td>
+          </tr>
+          <tr>
+            <td valign="top">Creatinine (mg/dL)
+              <label></label></td>
+            <td valign="top"><label>
+                <input name="cre" type="text" id="cre" value="1" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">Urea (mEq/L)</td>
+            <td valign="top"><label>
+                <input name="ure" type="text" id="ure" value="4" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">BSL (mg/dL)</td>
+            <td valign="top"><label>
+                <input name="bsl" type="text" id="bsl" value="100" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">Albumin (g/L)</td>
+            <td valign="top"><label>
+                <input name="alb" type="text" id="alb" value="40" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">Bilirubin (mg/dL)</td>
+            <td valign="top"><label>
+                <input name="bil" type="text" id="bil" value="1" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">Ht (%)</td>
+            <td valign="top"><label>
+                <input name="hto" type="text" id="hto" value="40" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">WBC (x1000/mm3)</td>
+            <td valign="top"><label>
+                <input name="wbc" type="text" id="wbc" value="10" size="5" />
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top">GCS :</td>
+            <td valign="top"><input name="sed" type="checkbox" id="sed" onclick="defgcs()" />
+              Not available</td>
+          </tr>
+          <tr>
+            <td valign="top" id="tabgla1">- Eyes</td>
+            <td valign="top"><label>
+                <select name="gce" id="gce">
+                  <option value="4" selected="selected">4. Spontaneous</option>
+                  <option value="3">3. Verbal Stimulation</option>
+                  <option value="2">2. Painful Stimulation</option>
+                  <option value="1">1. Never</option>
+                </select>
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top" id="tabgla2">- Verbal</td>
+            <td valign="top"><label>
+                <select name="gcv" id="gcv">
+                  <option value="5" selected="selected">5. Oriented</option>
+                  <option value="4">4. Desoriented</option>
+                  <option value="3">3. Inappropriate</option>
+                  <option value="2">2. Incomprehensible</option>
+                  <option value="1">1. None</option>
+                </select>
+              </label></td>
+          </tr>
+          <tr>
+            <td valign="top" id="tabgla3">- Motor</td>
+            <td valign="top"><label>
+                <select name="gcm" id="gcm">
+                  <option value="6" selected="selected">6. On Command</option>
+                  <option value="5">5. Localizes Pain</option>
+                  <option value="4">4. Withdraws (Flexion)</option>
+                  <option value="3">3. Decorticate (Flexion)</option>
+                  <option value="2">2. Decerebrate (Extension)</option>
+                  <option value="1">1. None</option>
+                </select>
+              </label></td>
+          </tr>
+        </table>
+        <p><u><a href="Javascript: gradapp()" class="notestyle">Change values used for AaDO2 calculation</a></u></p>
+      </div>
+    </div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </form>
+  <p>&nbsp;</p>
+  <Script Language="JavaScript">
+    document.getElementById("tabthr").style.color = "#999999";
+    document.getElementById("tabthr2").style.color = "#999999"
+    document.apa.thr[0].disabled = true;
+    document.apa.thr[1].disabled = true;
+  </Script>
+</body>
+
+</html>
