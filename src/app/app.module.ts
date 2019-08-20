@@ -1,30 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatFormFieldModule, MatButtonModule, MatInputModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+import { Apache4CalculatorModule } from 'src/app/components/apache-4-calculator/apache-4-calculator.module';
+import { DataLoaderModule } from 'src/app/components/data-loader/data-loader.module';
 
-import { JsonTreeModule } from 'src/app/components/json-tree/json-tree.module';
-import { VisitLoaderService } from 'src/app/services/visit-loader/visit-loader.service';
-import { SocketService } from 'src/app/services/socket/socket.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    JsonTreeModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatInputModule,
-    HttpClientModule,
+    Apache4CalculatorModule,
+    DataLoaderModule,
   ],
-  providers: [SocketService, VisitLoaderService],
   bootstrap: [AppComponent]
 })
 

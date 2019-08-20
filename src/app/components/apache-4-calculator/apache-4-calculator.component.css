@@ -18,8 +18,6 @@
 	font-family: Geneva, Arial, Helvetica, sans-serif;
 }
 
-
-
 #banner1 {
 	position:absolute;
 	width:100%;
@@ -100,7 +98,6 @@
 	height:auto;
 	z-index:5;
 	background-color: #DCDCBA;
-	background-image: url(../Img/tl.gif);
 	background-position: left top;
 	background-repeat: no-repeat;
 	right: 125px;
@@ -108,12 +105,10 @@
 	visibility: visible;
 }
 #bl {
-	background-image: url(../Img/bl.gif);
 	background-repeat: no-repeat;
 	background-position: left bottom;
 }
 #br {
-	background-image: url(../Img/br.gif);
 	background-repeat: no-repeat;
 	background-position: right bottom;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -123,4 +118,53 @@
 	padding-right: 15px;
 	padding-bottom: 10px;
 	padding-left: 15px;
+}
+
+#formul {
+	position:absolute;
+	width:auto;
+	height:auto;
+	z-index:1;
+	visibility: visible;
+}
+
+#droit {
+	position:absolute;
+	width:380px;
+	height:auto;
+	z-index:1;
+	margin-left: 430px;
+	top: 0px;
+	left: 0px;
+	visibility: visible;
+}
+
+#gauch {
+	position:absolute;
+	width:380px;
+	height:auto;
+	z-index:2;
+	padding-right: 25px;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-top-color: #999999;
+	border-right-color: #999999;
+	border-bottom-color: #999999;
+	border-left-color: #999999;
+	left: 0px;
+	top: 0px;
+	visibility: visible;
+}
+
+#grad {
+	display: none;
+	left: 0px;
+	bottom: 0px;
+	position: absolute;
+	margin: 20px;
+	border: 1px solid #999999;
+	background-color: #669999;
 }

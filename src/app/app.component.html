@@ -1,13 +1,1 @@
-<div>
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <div>
-    <mat-form-field>
-      <mat-label>Fetch a visit</mat-label>
-      <textarea matInput #visitNumber placeholder="Visit number"></textarea>
-    </mat-form-field>
-    <button mat-raised-button (click)="fetchVisit(visitNumber.value)">Visit number</button>
-  </div>
-  <json-tree [value]="visit"></json-tree>
-</div>
+<router-outlet></router-outlet>
